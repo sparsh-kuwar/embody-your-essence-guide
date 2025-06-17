@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -125,7 +124,10 @@ const Dashboard = () => {
                   <span className="text-orange-100">{userData.fitnessLevel === 'explorer' ? '20-30s' : userData.fitnessLevel === 'warrior' ? '45-60s' : '60-90s'}</span>
                 </div>
               </div>
-              <Button className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 border-2 border-orange-400">
+              <Button 
+                onClick={() => navigate('/workouts', { state: { userData } })}
+                className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 border-2 border-orange-400"
+              >
                 <Book className="w-4 h-4 mr-2" />
                 View Complete Battle Plan
               </Button>
@@ -177,7 +179,10 @@ const Dashboard = () => {
                   <span className="text-orange-100">{Math.round(userData.dailyCalories * 0.1)} kcal</span>
                 </div>
               </div>
-              <Button className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 border-2 border-orange-400">
+              <Button 
+                onClick={() => navigate('/meals', { state: { userData } })}
+                className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 border-2 border-orange-400"
+              >
                 <Calendar className="w-4 h-4 mr-2" />
                 View Complete Meal Strategy
               </Button>
@@ -188,10 +193,21 @@ const Dashboard = () => {
         {/* Progress Section */}
         <Card className="bg-black/20 backdrop-blur-sm border-orange-500/30 border-2 mt-8">
           <CardHeader>
-            <CardTitle className="text-white">Victory Progress</CardTitle>
-            <CardDescription className="text-orange-100">
-              Track your conquests and celebrate your warrior achievements
-            </CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-white">Victory Progress</CardTitle>
+                <CardDescription className="text-orange-100">
+                  Track your conquests and celebrate your warrior achievements
+                </CardDescription>
+              </div>
+              <Button
+                onClick={() => navigate('/progress', { state: { userData } })}
+                variant="outline"
+                className="border-orange-400 border-2 text-orange-400 hover:bg-orange-400 hover:text-black bg-transparent"
+              >
+                View Details
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-6">
